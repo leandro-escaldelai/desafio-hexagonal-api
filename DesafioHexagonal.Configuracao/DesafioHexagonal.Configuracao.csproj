@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DesafioHexagonal.Aplicacao\DesafioHexagonal.Aplicacao.csproj" />
+    <ProjectReference Include="..\DesafioHexagonal.Infraestrutura\DesafioHexagonal.Infraestrutura.csproj" />
+  </ItemGroup>
+
+</Project>
