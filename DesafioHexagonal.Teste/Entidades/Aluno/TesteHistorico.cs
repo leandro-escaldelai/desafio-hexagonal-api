@@ -108,9 +108,7 @@ public class TesteHistorico : TesteBase
 	[InlineData(null)]
 	public void Criar_Historico_Com_DataInicio_Invalida(string? valor)
 	{
-		DateTime? data = valor != null
-			? DateTime.Parse(valor)
-			: null;
+		var data = ObterData(valor);
 
 		var testavel = ConstrutorHistorico.Criar()
 			.Aleatorio()
@@ -126,9 +124,7 @@ public class TesteHistorico : TesteBase
 	[InlineData("2090-01-01")]
 	public void Criar_Historico_Com_DataTermino_Invalida(string? valor)
 	{
-		DateTime? data = valor != null
-			? DateTime.Parse(valor)
-			: null;
+		var data = ObterData(valor);
 
 		var testavel = ConstrutorHistorico.Criar()
 			.Aleatorio()

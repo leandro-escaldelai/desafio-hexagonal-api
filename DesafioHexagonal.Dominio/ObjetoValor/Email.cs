@@ -10,7 +10,7 @@ public class Email
 
 	private Email() { }
 
-	public Email(string url)
+	public Email(string? url)
 	{
 		Validador.Criar()
 			.Email(url, nameof(Url))

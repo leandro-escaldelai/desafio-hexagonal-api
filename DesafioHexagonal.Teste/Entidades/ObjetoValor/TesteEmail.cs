@@ -3,7 +3,7 @@ using DesafioHexagonal.Teste.Dominio.Construtores;
 using FluentAssertions;
 using System.Reflection;
 
-namespace DesafioHexagonal.Teste.Dominio.ObjetoValor;
+namespace DesafioHexagonal.Teste.Dominio;
 
 public class TesteEmail : TesteBase
 {

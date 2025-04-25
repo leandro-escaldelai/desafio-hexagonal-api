@@ -10,7 +10,7 @@ public class Telefone
 
 	private Telefone() { }
 
-	public Telefone(string ddd, string numero)
+	public Telefone(string? ddd, string? numero)
 	{
 		Validador.Criar()
 			.Ddd(ddd)

@@ -10,7 +10,7 @@
     <Folder Include="Interfaces\Repositorios\Curso\" />
     <Folder Include="Interfaces\Servicos\Curso\" />
     <Folder Include="Servicos\Curso\" />
-    <Folder Include="TransferenciaDados\Entrada\" />
+    <Folder Include="TransferenciaDados\Entrada\Curso\" />
     <Folder Include="TransferenciaDados\Saida\Curso\" />
   </ItemGroup>
 

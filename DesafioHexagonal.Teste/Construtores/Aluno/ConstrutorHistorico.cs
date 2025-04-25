@@ -1,5 +1,6 @@
 ﻿using DesafioHexagonal.Dominio.Entidades;
 using DesafioHexagonal.Dominio.ObjetoValor;
+using Bogus;
 
 namespace DesafioHexagonal.Teste.Dominio.Construtores;
 
@@ -102,8 +103,9 @@ public class ConstrutorHistorico
 
 	public ConstrutorHistorico Aleatorio()
 	{
-		var gerador = new Bogus.Faker();
+		var gerador = new Faker();
 
+		ComId(gerador.Random.Int(1, 1000));
 		ComPerfil(ConstrutorPerfil.CriarAleatorio());
 		ComInstituicao(gerador.Lorem.Sentence());
 		ComCurso(gerador.Lorem.Sentence());

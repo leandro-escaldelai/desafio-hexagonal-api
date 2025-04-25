@@ -6,6 +6,34 @@ namespace DesafioHexagonal.Dominio.Validacoes;
 public static class Testes
 {
 
+	public static Validador NumeroPositivo(this Validador validador, int? valor, string campo)
+	{
+		return validador.Teste(
+			valor.HasValue && valor > 0,
+			string.Format(Resources.NumeroInvalido, campo));
+	}
+
+	public static Validador NumeroPositivo(this Validador validador, decimal? valor, string campo)
+	{
+		return validador.Teste(
+			valor.HasValue && valor > 0,
+			string.Format(Resources.NumeroInvalido, campo));
+	}
+
+	public static Validador NumeroPositivoOuZero(this Validador validador, int? valor, string campo)
+	{
+		return validador.Teste(
+			valor.HasValue && valor >= 0,
+			string.Format(Resources.NumeroInvalido, campo));
+	}
+
+	public static Validador NumeroPositivoOuZero(this Validador validador, decimal? valor, string campo)
+	{
+		return validador.Teste(
+			valor.HasValue && valor >= 0,
+			string.Format(Resources.NumeroInvalido, campo));
+	}
+
 	public static Validador ObjetoNulo(this Validador validador, object? valor, string campo) =>
 		validador.Teste(valor != null, string.Format(Resources.NaoPreenchido, campo));
 

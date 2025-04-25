@@ -38,4 +38,22 @@ public class Perfil
 		Foto = foto;
 	}
 
+
+	public void Atualizar(string? nome, string? endereco, Telefone? telefone, Email? email, string? foto)
+	{
+		Validador.Criar()
+			.TextoNuloOuVazio(nome, nameof(Nome))
+			.TextoNuloOuVazio(endereco, "Endereço")
+			.ObjetoNulo(telefone, nameof(Telefone))
+			.ObjetoNulo(email, "e-mail")
+			.Url(foto, nameof(Foto))
+			.Validar();
+
+		Nome = nome;
+		Endereco = endereco;
+		Telefone = telefone;
+		Email = email;
+		Foto = foto;
+	}
+
 }

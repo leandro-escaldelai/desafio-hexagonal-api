@@ -124,6 +124,15 @@ namespace DesafioHexagonal.Dominio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Número {0} inválido..
+        /// </summary>
+        internal static string NumeroInvalido {
+            get {
+                return ResourceManager.GetString("NumeroInvalido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Número de telefone inválido..
         /// </summary>
         internal static string NumeroTelefoneInvalido {

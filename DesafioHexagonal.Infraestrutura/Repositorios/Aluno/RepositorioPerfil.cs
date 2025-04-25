@@ -7,40 +7,31 @@ using Microsoft.EntityFrameworkCore;
 namespace DesafioHexagonal.Infraestrutura.Repositorios;
 
 public class RepositorioPerfil(
-    IMapper mapeador,
     ContextoDados contexto) : IRepositorioPerfil
 {
 
-    public async Task<PerfilTDS> Obter(int id)
+    public async Task<PerfilTDS?> Obter(int? id)
     {
-        var Perfil = await contexto.Set<PerfilTDS>()
+        return await contexto.Set<PerfilTDS>()
             .AsNoTracking()
             .FirstOrDefaultAsync(e => e.Id == id);
-
-        if (Perfil == null)
-            throw new NaoEncontradoException();
-
-        return Perfil;
     }
 
-    public async Task Inserir(PerfilTDS Perfil)
+    public async Task Inserir(PerfilTDS perfil)
     {
-        await contexto.AddAsync(Perfil);
+        await contexto.AddAsync(perfil);
         await contexto.SaveChangesAsync();
     }
 
-    public async Task Alterar(PerfilTDS Perfil)
+    public async Task Alterar(PerfilTDS perfil)
     {
-        var PerfilNovo = await contexto.Set<PerfilTDS>()
-            .FirstOrDefaultAsync(e => e.Id == Perfil.Id);
+        var e = await contexto.AddAsync(perfil);
 
-        if (PerfilNovo == null)
-            throw new NaoEncontradoException();
+        e.State = EntityState.Modified;
 
-        mapeador.Map(Perfil, PerfilNovo);
-
-        await contexto.SaveChangesAsync();
+		await contexto.SaveChangesAsync();
     }
+
 
 
     internal static void Configurar(ModelBuilder modelBuilder)

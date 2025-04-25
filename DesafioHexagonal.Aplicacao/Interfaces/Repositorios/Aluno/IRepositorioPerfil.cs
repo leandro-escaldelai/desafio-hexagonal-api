@@ -5,7 +5,7 @@ namespace DesafioHexagonal.Aplicacao.Interfaces;
 public interface IRepositorioPerfil
 {
 
-    Task<PerfilTDS> Obter(int id);
+    Task<PerfilTDS?> Obter(int? id);
 
     Task Inserir(PerfilTDS Perfil);
 

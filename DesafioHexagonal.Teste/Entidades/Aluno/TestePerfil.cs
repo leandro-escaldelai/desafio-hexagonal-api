@@ -2,6 +2,7 @@
 using DesafioHexagonal.Dominio.ObjetoValor;
 using DesafioHexagonal.Teste.Dominio.Construtores;
 using FluentAssertions;
+using System.Drawing;
 using System.Reflection;
 
 namespace DesafioHexagonal.Teste.Dominio;
@@ -108,6 +109,92 @@ public class TestePerfil : TesteBase
 			.ComFoto(valor);
 			
 		testavel.Invoking(x => x.Construir())
+			.Should()
+			.Throw<ValidacaoException>();
+	}
+
+	[Fact]
+	public void Atualizar_Perfil()
+	{
+		var referencia = new
+		{
+			Id = gerador.Random.Int(1),
+			Nome = gerador.Name.FullName(),
+			Endereco = gerador.Address.FullAddress(),
+			Telefone = ConstrutorTelefone.CriarAleatorio(),
+			Email = ConstrutorEmail.CriarAleatorio(),
+			Foto = gerador.Internet.Url()
+		};
+		var testavel = ConstrutorPerfil.Criar()
+			.Aleatorio()
+			.ComId(referencia.Id)
+			.Construir();
+
+		testavel.Atualizar(
+			referencia.Nome,
+			referencia.Endereco,
+			referencia.Telefone,
+			referencia.Email,
+			referencia.Foto
+		);
+
+		testavel.Should().BeEquivalentTo(referencia);
+	}
+
+	[Theory]
+	[InlineData(null)]
+	[InlineData("")]
+	public void Atualizar_Perfil_Nome_Invalido(string? valor)
+	{
+		var testavel = ConstrutorPerfil.CriarAleatorio();
+
+		testavel.Invoking(x => x.Atualizar(valor, x.Endereco, x.Telefone, x.Email, x.Foto))
+			.Should()
+			.Throw<ValidacaoException>();
+	}
+
+	[Theory]
+	[InlineData(null)]
+	[InlineData("")]
+	public void Atualizar_Perfil_Endereco_Invalido(string? valor)
+	{
+		var testavel = ConstrutorPerfil.CriarAleatorio();
+
+		testavel.Invoking(x => x.Atualizar(x.Nome, valor, x.Telefone, x.Email, x.Foto))
+			.Should()
+			.Throw<ValidacaoException>();
+	}
+
+	[Fact]
+	public void Atualizar_Perfil_Sem_Telefone()
+	{
+		var testavel = ConstrutorPerfil.CriarAleatorio();
+
+		testavel.Invoking(x => x.Atualizar(x.Nome, x.Endereco, null, x.Email, x.Foto))
+			.Should()
+			.Throw<ValidacaoException>();
+	}
+
+	[Fact]
+	public void Atualizar_Perfil_Sem_Email()
+	{
+		var testavel = ConstrutorPerfil.CriarAleatorio();
+
+		testavel.Invoking(x => x.Atualizar(x.Nome, x.Endereco, x.Telefone, null, x.Foto))
+			.Should()
+			.Throw<ValidacaoException>();
+	}
+
+	[Theory]
+	[InlineData(null)]
+	[InlineData("")]
+	[InlineData(" ")]
+	[InlineData("url invalida")]
+	public void Atualizar_Perfil_Foto_Invalida(string? valor)
+	{
+		var testavel = ConstrutorPerfil.CriarAleatorio();
+
+		testavel.Invoking(x => x.Atualizar(x.Nome, x.Endereco, x.Telefone, x.Email, valor))
 			.Should()
 			.Throw<ValidacaoException>();
 	}

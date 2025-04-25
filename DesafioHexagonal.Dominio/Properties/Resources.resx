@@ -138,6 +138,9 @@
   <data name="NaoPreenchido" xml:space="preserve">
     <value>{0} deve ser preenchido.</value>
   </data>
+  <data name="NumeroInvalido" xml:space="preserve">
+    <value>Número {0} inválido.</value>
+  </data>
   <data name="NumeroTelefoneInvalido" xml:space="preserve">
     <value>Número de telefone inválido.</value>
   </data>
